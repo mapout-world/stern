@@ -1,0 +1,5 @@
+---
+name: service.users
+
+logging:
+  level: debug

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/mapout-world/stern/services/service.places/proto/v1;placespb";
+
+package service.places.v1;
+
+service Places {
+  rpc GetPlace (GetPlaceRequest) returns (GetPlaceReply) {}
+}
+
+message GetPlaceRequest {
+  string id = 1;
+}
+
+message GetPlaceReply {
+  string name = 1;
+}

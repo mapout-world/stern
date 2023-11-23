@@ -1,0 +1,34 @@
+x-env:
+  &env
+  CONFIG: /etc/config/default.yaml
+  SVCADDR_SERVICE_PLACES: service.places:50051
+  SVCADDR_SERVICE_USERS: service.users:50051
+
+services:
+  service.places:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: service.places
+    image: mapout-world/stern/service.places:v0.0.0
+    ports:
+      - 3001:8081
+    environment:
+      <<: *env
+    volumes:
+      - ./services/service.places/config:/etc/config
+
+  service.users:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: service.users
+    image: mapout-world/stern/service.users:v0.0.0
+    ports:
+      - 3002:8081
+    environment:
+      <<: *env
+    volumes:
+      - ./services/service.users/config:/etc/config
